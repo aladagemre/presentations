@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Python Programlama Dili</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <link href='http://fonts.googleapis.com/css?family=Gabriela&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+
+        <script src="js/skulpt.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery.min.js"> </script>
+		<!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <style type="text/css">
+            .highlight {
+                color: yellow;
+            }
+            .btn-primary {
+                background-color: #428BCA;
+                border-color: #357EBD;
+                color: #FFFFFF;
+            }
+            .btn-danger {
+                background-color: #D9534F;
+                border-color: #D43F3A;
+                color: #FFFFFF;
+            }
+            .btn {
+                -moz-user-select: none;
+                background-image: none;
+                border: 1px solid rgba(0, 0, 0, 0);
+                border-radius: 4px;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.42857;
+                margin-bottom: 0;
+                padding: 6px 12px;
+                text-align: center;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+            .large {
+                font-size: 1.2em;
+            }
+            body {
+
+            }
+            .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5{
+                font-family: Gabriela;
+            }
+
+        </style>
+
+        <script type="text/javascript">
+            // output functions are configurable. This one just appends some text
+            // to a pre element.
+            function run(button){
+                clear_output();
+                input = $(button).siblings("textarea");
+                output = $(button).siblings("pre");
+
+                code = $(input).val();
+                output.innerHTML = '';
+                Sk.canvas = "mycanvas";
+                Sk.pre = output.get()[0].id;
+                Sk.configure({output: outf, read:builtinRead});
+                eval(Sk.importMainWithBody("<stdin>",false, code));
+            }
+
+            function outf(text) {
+                mypre = $(Reveal.getCurrentSlide()).children("pre")[0];
+                mypre.innerHTML = mypre.innerHTML + text;
+            }
+
+            function clear_output() {
+                mypre = $(Reveal.getCurrentSlide()).children("pre")[0];
+                mypre.innerHTML = '';
+            }
+
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles["files"][x];
+            }
+        </script>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section data-markdown>
+                    <script type="text/template">
+                        # <span style="color: #ffd43b">PY</span><span style="color: #5a9fd4">THON</span>
+
+                        Ahmet Emre Aladağ
+
+                        Karabük Üniversitesi - 26.02.2014
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Hızlıca bakalım
+                        * Nedir?
+                        * Kim çıkardı?
+                        * Ne zaman çıktı?
+                        * Neden çıktı?
+                        * Kim Kullanıyor?
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## NE DEĞİLDİR?
+
+                        <img src="img/snake.jpg"/>
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## NEDİR?
+
+                        ### PROGRAMLAMA DİLİ
+                        Adı The Monty Python dizisinden geliyor.
+                        <img src="img/python.png"/>
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Kim çıkardı?
+
+                        ### Guido Van Rossum
+                        <img src="img/guido.jpg"/>
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ne zaman çıktı?
+
+                        * 1989'da yazılmaya başlandı.
+                        * 1994'te 1.0 sürümü.
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Neden ortaya çıktı?
+
+                        * C, Fortran vs. çok uğraştırıcı.
+                        * Yazma ve Derleme süreçleri çok uzun.
+                        * Çoğu iş yüksek CP gerektirmiyor.
+                        * C ve Shell arasında, yüksek seviyeli bir dile ihtiyaç var!
+
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Kim kullanıyor?
+                        * Google, Yahoo, NASA, MIT, Pinterest, Instagram, Disqus, Yelp, Washington Post, ...
+                        * Butigo, Markafoni, Cimri, Hipo, Put.io, Metglobal (Tatil.com), ...
+                        <img src="img/nasa.gif" style="height: 150px"/><img src="img/google.png" style="height:150px; background-color: white"/>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Nasıl bir şey?
+
+                        * Öğrenmesi çok kolay!
+                        * Az kodla çok iş.
+                        * Hızlıca kod yaz, sonuçları hemen gör.
+                        * python dosya.py => sonucu gör.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Nasıl bir şey?
+                        * İngilizce yazar gibi.
+                        * İnsan aklına yatkın
+                        * Okuması kolay (Kodu okumak, yazmaktan daha zordur!)
+                        * Esnek
+                        * Geniş kütüphane
+
+                        <pre><code data-trim contenteditable class="python">
+for candidate in candidate_list:
+    print candidate
+winners = random.sample(candidate_list)
+print "Winners are", winners
+                        </code></pre>
+                    </script>
+
+
+                </section>
+                <section>
+                    <pre style="overflow: visible; max-height: none"><code  style="overflow: visible; max-height: none" data-trim contenteditable class="python">
+if you in (depressed, sadness, resignation):
+    print 'me, my sweetheart'
+if feel(you) is 'lonely' or feel(you) is 'neglected':
+    talk_me(this)
+while always:
+    I.take_care(you)
+    if you.love() is not me:
+        # I will follow in the madness
+        # I will
+        break # down...
+for emotion in my.heart:
+    try:
+        your.lover = me
+    except:
+        your.best_friend = me
+if you.hate(me):
+    love(me)
+elif I.annoying():
+    love(me)
+else:
+    love(me, how='deeply', when='now')
+                    </code></pre>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Neler yapabilirim?
+                        * Web Programlama (Django, Flask)
+                        * Masaüstü programlama (PyQt4, Tkinter)
+                        * Facebook Oyunları
+                        * Mobil (kivy, PyS60)
+                        * Gömülü sistemler
+                        * RaspberryPi
+                        * Otomasyon
+                        * Bilimsel Hesaplama
+                        * OpenCV ile görüntü işleme
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Özellikleri
+                        * Platform Bağımsız (Windows, Linux, Mac)
+                        * Yorumlanabilir
+                        * Etkileşimli kabuk ile kodları hızlıca dene
+                        * Şu anda 2.7 ve 3.3 sürümleri mevcut.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Özellikleri
+                        * py dosya uzantısı, pyc byte kodu
+                        * IDE seçenekleri: <span class="highlight">PyCharm</span>, ActivePython, Komodo, Eclipse
+                        * Py2exe ile Windows exe’leri oluşturmak mümkün
+                        * pip install Django
+                        * virtualenv ile sanal ortam
+                    </script>
+                </section>
+                <section>
+                    <h1>Kod Örneklerİ</h1>
+                </section>
+                <section>
+<h3>Java</h3>
+<pre><code data-trim contenteditable class="java">
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Merhaba Dunya");
+    }
+}
+</code></pre>
+<h3>Python</h3>
+<pre><code data-trim contenteditable class="python">
+print "Merhaba Dunya"
+</code></pre>
+
+
+                </section>
+
+                <section>
+                    <h3>Java</h3>
+<pre><code data-trim contenteditable class="java">
+public class HelloWorld {
+    public static void main(String[] args) {
+        String liste[] = {"Ahmet", "Emre", "Serdar", "Emir"};
+        for (int i=0; i < liste.length; i++){
+            if (i % 2 == 0){
+                System.out.println(liste[i]);
+            }
+        }
+    }
+}
+</code></pre>
+                    <h3>Python</h3>
+<pre><code data-trim contenteditable class="python">
+    liste = ["Ahmet", "Emre", "Serdar", "Emir"]
+    for isim in liste[::2]:
+        print isim
+
+</code></pre>
+
+
+                </section>
+
+                <section>
+                    <h2>DİĞER KARŞILAŞTIRMALAR</h2>
+                    <a href="http://www.programcreek.com/2012/04/java-vs-python-why-python-can-be-more-productive/index.html">Buna da bakalım</a>
+                </section>
+
+                <section  data-markdown>
+                    <script type="text/template">
+                        ## SÖZ DİZİMİ
+
+                        * Girintili yazım zorunlu.
+                        * Yapılar { ile değil : ile bitiyor.
+                        * Yorumlar # ile.
+                        * Satır sonu ; kullanmaya gerek yok.
+                    </script>
+
+                </section>
+                <section>
+<pre><code data-trim contenteditable class="python">
+a, b = b, a            # a ile b'nin değerlerini takas eder.
+sayilar = range(0,53)  # [0, 1, 2, ..., 51, 52]
+sayilar[3:24:3]        # [3, 6, 9, 12, 15, 18, 21]
+sayilar.append(53)     # en sona 53 ekler.
+sum(sayilar)           # tüm sayıları toplar (1472)
+max(sayilar)           # sayıların en büyüğünü bulur (94)
+
+# Dosyayı olduğu gibi ekrana yazar
+print open("dosya.txt").read()
+# Dosyanın içeriğini satır satır yazar.
+for satir in open("dosya.txt"):
+    print satir
+
+def faktoriyel(sayi):
+    if sayi <= 2:
+        return sayi
+    return sayi * faktoriyel(sayi-1)
+
+</code></pre>
+
+                </section>
+                <section>
+<pre><code data-trim contenteditable class="python">
+sum(x**2 for x in range(10))    # 0..9 aralığındaki sayıların karelerinin toplamını hesaplar
+sayi_listesi = [1, 9, 2, 3, 3, 1, 1, 4, 1]
+[2*sayi for sayi in sayi_listesi if sayi > 2]   # [18, 6, 6, 8]
+sayilar = set(sayi_listesi)  # tekrarlı öğeleri kaldırır, kümeye çevirir.
+9 in sayilar  # True
+</code></pre>
+
+                </section>
+                <section>
+                    <textarea cols="40" rows="4" style="font-size:0.8em">
+print "Hello"</textarea>
+                    <br/>
+                    <button onclick="run(this);" class="btn btn-primary large">Run</button>
+                    <button onclick="clear_output();" class="btn btn-danger large">Clear</button>
+<pre id="output" style="height:200px; scroll: true">
+</pre>
+                </section>
+
+                <section>
+                    <img src="img/git.jpg">
+                </section>
+                <section  data-markdown>
+                    <script type="text/template">
+                    ### Git
+                    * Sürüm kontrolü, ufak adımlarla ilerleyin.
+                    * Geri dönme imkanı
+                    * İşleri paylaşıp birleştirme imkanı
+                    * Çevrimdışı çalışma imkanı
+                    * Deployment için ideal
+                    * Github ve Bitbucket
+                    * Öğrenmek için: <a href="http://try.github.io">http://try.github.io</a>
+                    </script>
+                </section>
+
+				<section>
+					<h3>Python Hakkında Kaynaklar</h3>
+					<ul>
+						<li><a href="http://www.pythonkursu.com">www.pythonkursu.com</a></li>
+						<li><a href="http://www.python.org">www.python.org</a></li>
+						<li><a href="http://www.istihza.com">www.istihza.com</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Sorular?</h2>
+					<h4>aladagemre at gmail.com</h4>
+                    <h4>http://www.emrealadag.com</h4>
+                    <h4>http://github.com/aladagemre</h4>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+                slideNumber: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+
+		</script>
+
+	</body>
+</html>
